@@ -1,10 +1,10 @@
 <?php
 abstract class Controller {
-    private $slug = [];
+    private $data = [];
     abstract public function handle();
 
     public function __construct(array $slug) {
-        $this->slug = $slug;
+        $this->data = $slug;
     }
 
     public function __get(string $name) {
@@ -12,7 +12,7 @@ abstract class Controller {
     }
 
     public function __set(string $name, mixed $value) {
-        $this->slug[$name] = $value;
+        $this->data[$name] = $value;
     }
 
     public function __call(string $name, array $args): Self {
@@ -22,7 +22,7 @@ abstract class Controller {
             && is_uppercased($name[3])
         ) {
             $param_name = substr($name, 3);
-            $this->slug[lcFirst($param_name)] = $args[0] ?? false;
+            $this->data[lcFirst($param_name)] = $args[0] ?? false;
             return $this;
         }
 
@@ -34,7 +34,7 @@ abstract class Controller {
         $loader = new \Twig\Loader\FilesystemLoader('./templates');
         $twig = new \Twig\Environment($loader);
 
-        echo $twig->render("$name.html", $this->slug + $args + ['ByMethod' => 43]);
+        echo $twig->render("$name.html", $this->data + $args + ['ByMethod' => 43]);
     }
 }
 
