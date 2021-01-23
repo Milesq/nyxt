@@ -1,0 +1,17 @@
+{
+    "name": "milesq/bikes",
+    "type": "project",
+    "license": "MIT",
+    "description": "bikes borrow platform",
+    "authors": [
+        {
+            "name": "Milesq",
+            "email": "wmilosz88@gmail.com"
+        }
+    ],
+    "require": {
+        "rakit/validation": "^1.4",
+        "vlucas/phpdotenv": "^5.3",
+        "bramus/router": "^1.5"
+    }
+}
