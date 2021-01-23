@@ -32,7 +32,9 @@ abstract class Controller {
     protected function render(string $name, array $args = []) {
         // relative to require vendor/autoload
         $loader = new \Twig\Loader\FilesystemLoader('./templates');
-        $twig = new \Twig\Environment($loader);
+        $twig = new \Twig\Environment($loader, [
+            'cache' => '.cache',
+        ]);
 
         echo $twig->render("$name.html", $this->data + $args + ['ByMethod' => 43]);
     }
