@@ -2,7 +2,7 @@
 function scan_controllers(string $dir, string $dirname = '/') {
     $controllers = [];
 
-    foreach (scandir($dir) as $entity_name) {
+    foreach (scandir($dir, SCANDIR_SORT_DESCENDING) as $entity_name) {
         if (in_array($entity_name, ['.', '..'])) continue;
 
         $path = "$dir/$entity_name";
