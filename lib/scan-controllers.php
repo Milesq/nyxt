@@ -10,6 +10,12 @@ function scan_controllers(string $dir, string $dirname = '/') {
         if (is_dir($path)) {
             foreach (scan_controllers($path, $entity_name) as $controller) {
                 [$controller_path, $controller_exp] = $controller;
+
+                if (str_starts_with($entity_name, '_')) {
+                    $slug_name = substr($entity_name, 1);
+                    $entity_name = "{{$slug_name}}";
+                }
+
                 $controllers[] = [$controller_path, "/$entity_name$controller_exp"];
             }
             continue;
