@@ -1,10 +1,36 @@
 <?php
+use \Rakit\Validation\Validator;
+
 abstract class Controller {
     private $data = [];
     abstract public function handle();
 
+    /**
+     * @return bool|string validate returns error (string) or true
+     *  If returns false value, default error will be displayed
+     */
+    protected function validate(Validator $v): bool|string|array {
+        return true;
+    }
+
     public function __construct(array $slug) {
         $this->data = $slug;
+        $msg = $this->validate(new Validator);
+
+        $msg_is_string = gettype($msg) === 'string';
+
+        if (!$msg || $msg_is_string) {
+            if ($msg_is_string) echo $msg;
+            else {
+                try {
+                    $this->render('[error]');
+                } catch (\Twig\Error\LoaderError $err) {
+                    echo 'Validation error has occured';
+                }
+            }
+
+            die();
+        }
     }
 
     public function __get(string $name) {
