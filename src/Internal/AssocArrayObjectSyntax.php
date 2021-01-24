@@ -2,7 +2,7 @@
 namespace Nyxt\Internal;
 
 class AssocArrayObjectSyntax {
-    private $data = [];
+    protected $data = [];
     public function __construct(array $init) {
         $this->data = $init;
     }
