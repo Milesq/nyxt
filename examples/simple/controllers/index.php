@@ -2,11 +2,11 @@
 class Handler extends \Nyxt\Controller {
     public function handle() {
         $this->by_property = "hello";
+        $this->reset();
         $this
             ->setByMethod("hello")
-            ->setChainMethod("world");
-
-        print_r($_SERVER);
+            ->setChainMethod("world")
+            ->unset('chainMethod');
 
         $this->render('index', ['by_arg' => 1]);
     }

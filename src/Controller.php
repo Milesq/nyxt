@@ -3,8 +3,8 @@ namespace Nyxt;
 
 use \Rakit\Validation\Validator;
 
-abstract class Controller {
-    private $data = [];
+abstract class Controller extends Internal\AssocArrayObjectSyntax {
+    protected $data;
     abstract public function handle();
 
     /**
@@ -33,28 +33,6 @@ abstract class Controller {
         }
     }
 
-    public function __get(string $name) {
-        return $this->slug[$name];
-    }
-
-    public function __set(string $name, mixed $value) {
-        $this->data[$name] = $value;
-    }
-
-    public function __call(string $name, array $args): Self {
-        if (
-            str_starts_with($name, 'set')
-            && isset($name[3])
-            && Utils\is_uppercased($name[3])
-        ) {
-            $param_name = substr($name, 3);
-            $this->data[lcFirst($param_name)] = $args[0] ?? false;
-            return $this;
-        }
-
-        throw new Exception("Method $name, doesnt exists on Controller");
-    }
-
     protected function try_render(string $name, array $args = []) {
         try {
             $this->render($name);
@@ -72,6 +50,6 @@ abstract class Controller {
             'cache' => ($_ENV['NYXT_MODE'] ?? 0 === 'production')? '.cache' : false,
         ]);
 
-        echo $twig->render("$name.html", $this->data + $args);
+        echo $twig->render("$name.html", $this->getData() + $args);
     }
 }
