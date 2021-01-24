@@ -64,6 +64,6 @@ abstract class Controller {
             'cache' => '.cache',
         ]);
 
-        echo $twig->render("$name.html", $this->data + $args + ['ByMethod' => 43]);
+        echo $twig->render("$name.html", $this->data + $args);
     }
 }
