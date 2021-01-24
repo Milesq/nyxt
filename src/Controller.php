@@ -69,7 +69,7 @@ abstract class Controller {
         // relative to require vendor/autoload
         $loader = new \Twig\Loader\FilesystemLoader('./templates');
         $twig = new \Twig\Environment($loader, [
-            'cache' => '.cache',
+            'cache' => ($_ENV['NYXT_MODE'] ?? 0 === 'production')? '.cache' : false,
         ]);
 
         echo $twig->render("$name.html", $this->data + $args);
