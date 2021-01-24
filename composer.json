@@ -1,8 +1,9 @@
 {
-    "name": "milesq/bikes",
-    "type": "project",
+    "name": "milesq/nyxt",
+    "description": "Simple, modern php framework",
     "license": "MIT",
-    "description": "bikes borrow platform",
+    "type": "library",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "Milesq",
@@ -11,8 +12,12 @@
     ],
     "require": {
         "rakit/validation": "^1.4",
-        "vlucas/phpdotenv": "^5.3",
         "bramus/router": "^1.5",
         "twig/twig": "^3.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nyxt\\": "src/"
+        }
     }
 }

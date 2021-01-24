@@ -1,4 +1,6 @@
 <?php
+namespace Nyxt;
+
 use \Rakit\Validation\Validator;
 
 abstract class Controller {

@@ -1,4 +1,6 @@
 <?php
+namespace Nyxt;
+
 function scan_controllers(string $dir, string $dirname = '/') {
     $controllers = [];
 
