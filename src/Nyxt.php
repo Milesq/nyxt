@@ -8,7 +8,7 @@ final class Base {
         $this->router = new \Bramus\Router\Router();
 
         $this->router->set404(function() {
-            echo '404';
+            header('Location: /404.html');
         });
 
         $this->router->before('GET', '/(.*)', function($path) {

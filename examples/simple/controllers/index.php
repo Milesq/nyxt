@@ -6,11 +6,13 @@ class Handler extends \Nyxt\Controller {
             ->setByMethod("hello")
             ->setChainMethod("world");
 
+        print_r($_SERVER);
+
         $this->render('index', ['by_arg' => 1]);
     }
 
     function validate($v): string|bool {
-        $validation = $v->validate($_POST, [
+        $validation = $v->validate($_GET, [
             'name' => 'required',
             'email' => 'required|email',
         ]);
