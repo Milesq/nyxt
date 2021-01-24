@@ -24,9 +24,7 @@ abstract class Controller {
         if (!$msg || $msg_is_string) {
             if ($msg_is_string) echo $msg;
             else {
-                try {
-                    $this->render('[error]');
-                } catch (\Twig\Error\LoaderError $err) {
+                if (!$this->try_render('[error]')) {
                     echo 'Validation error has occured';
                 }
             }
@@ -55,6 +53,16 @@ abstract class Controller {
         }
 
         throw new Exception("Method $name, doesnt exists on Controller");
+    }
+
+    protected function try_render(string $name, array $args = []) {
+        try {
+            $this->render($name);
+        } catch (\Twig\Error\LoaderError $err) {
+            return false;
+        }
+
+        return true;
     }
 
     protected function render(string $name, array $args = []) {
