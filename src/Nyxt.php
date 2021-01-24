@@ -28,7 +28,7 @@ final class Base {
         $this->router->before('GET', '/(.*)', function($path) {
             $path = "./public/$path";
             if (is_file($path)) {
-                echo file_get_contents($path);
+                header("Location: $path");
                 exit();
             }
         });
