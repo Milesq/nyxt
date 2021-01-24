@@ -12,8 +12,11 @@ final class Base {
         });
 
         $this->router->before('GET', '/(.*)', function($path) {
-            var_dump(is_file("./public/$path"));
-            exit;
+            $path = "./public/$path";
+            if (is_file($path)) {
+                echo file_get_contents($path);
+                exit();
+            }
         });
 
         foreach (scan_controllers('controllers') as $entry) {
