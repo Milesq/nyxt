@@ -47,7 +47,7 @@ abstract class Controller {
         if (
             str_starts_with($name, 'set')
             && isset($name[3])
-            && (require('./utils/is_uppercased.php'))($name[3])
+            && Utils\is_uppercased($name[3])
         ) {
             $param_name = substr($name, 3);
             $this->data[lcFirst($param_name)] = $args[0] ?? false;

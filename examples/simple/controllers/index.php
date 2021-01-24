@@ -1,5 +1,5 @@
 <?php
-class Handler extends Controller {
+class Handler extends \Nyxt\Controller {
     public function handle() {
         $this->by_property = "hello";
         $this

@@ -1,6 +1,6 @@
 <?php
 namespace Nyxt\Utils;
 
-return function(string $s): bool {
+function is_uppercased(string $s): bool {
     return strtoupper($s) == $s;
-};
+}
