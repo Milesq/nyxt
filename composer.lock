@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba6700e5d578fb687f6dae296053446a",
+    "content-hash": "5307be7342d455e174098316f263c9b1",
     "packages": [
         {
             "name": "bramus/router",
@@ -56,6 +56,58 @@
                 "source": "https://github.com/bramus/router/tree/1.5"
             },
             "time": "2020-10-26T09:50:48+00:00"
+        },
+        {
+            "name": "clancats/hydrahon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ClanCats/Hydrahon.git",
+                "reference": "b1e1b2207ff57815a41e6832803cdc1d46e36f19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ClanCats/Hydrahon/zipball/b1e1b2207ff57815a41e6832803cdc1d46e36f19",
+                "reference": "b1e1b2207ff57815a41e6832803cdc1d46e36f19",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ClanCats\\Hydrahon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mario Döring",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Fast & standalone PHP MySQL Query Builder library.",
+            "homepage": "https://github.com/ClanCats/Hydrahon",
+            "keywords": [
+                "builder",
+                "database",
+                "mysql",
+                "query",
+                "sqlite"
+            ],
+            "support": {
+                "issues": "https://github.com/ClanCats/Hydrahon/issues",
+                "source": "https://github.com/ClanCats/Hydrahon/tree/v1.1.14"
+            },
+            "time": "2020-09-30T14:43:29+00:00"
         },
         {
             "name": "rakit/validation",
@@ -345,7 +397,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "clancats/hydrahon": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

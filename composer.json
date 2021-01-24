@@ -13,7 +13,8 @@
     "require": {
         "rakit/validation": "^1.4",
         "bramus/router": "^1.5",
-        "twig/twig": "^3.2"
+        "twig/twig": "^3.2",
+        "clancats/hydrahon": "dev-master"
     },
     "autoload": {
         "psr-4": {
