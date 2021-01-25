@@ -52,4 +52,47 @@ abstract class Controller extends Internal\AssocArrayObjectSyntax {
 
         echo $twig->render("$name.html", $this->getData() + $args);
     }
+
+    static function scan_dir(string $dir, string $dirname = '/') {
+        $controllers = [];
+
+        foreach (scandir($dir, SCANDIR_SORT_DESCENDING) as $entity_name) {
+            if (in_array($entity_name, ['.', '..'])) continue;
+
+            $path = "$dir/$entity_name";
+
+            if (is_dir($path)) {
+                foreach (Self::scan_dir($path, $entity_name) as $controller) {
+                    [$controller_path, $controller_exp] = $controller;
+
+                    if (str_starts_with($entity_name, '_')) {
+                        $slug_name = substr($entity_name, 1);
+                        $entity_name = "{{$slug_name}}";
+                    }
+
+                    $controllers[] = [$controller_path, "/$entity_name$controller_exp"];
+                }
+                continue;
+            }
+
+            if (!str_ends_with($entity_name, '.php')) continue;
+
+            $controller_name = substr($entity_name, 0, -4); // remove '.php'
+            $controller_data = [$path];
+
+            if (str_starts_with($entity_name, '_')) {
+                $controller_name = substr($controller_name, 1);
+
+                $controller_data[] = "/{{$controller_name}}";
+            } elseif ($entity_name === 'index.php') {
+                $controller_data[] = '/';
+            } else {
+                $controller_data[] = "/$controller_name";
+            }
+
+            $controllers[] = $controller_data;
+        }
+
+        return $controllers;
+    }
 }

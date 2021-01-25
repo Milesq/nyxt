@@ -33,7 +33,7 @@ final class Base {
             }
         });
 
-        foreach (scan_controllers('controllers') as $entry) {
+        foreach (Controller::scan_dir('controllers') as $entry) {
             $this->router->all($entry[1], function(...$args) use ($entry, $get_pdo_fn) {
                 include $entry[0];
                 $matches = [];
