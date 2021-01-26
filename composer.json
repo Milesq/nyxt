@@ -14,7 +14,8 @@
         "rakit/validation": "^1.4",
         "bramus/router": "^1.5",
         "twig/twig": "^3.2",
-        "clancats/hydrahon": "dev-master"
+        "clancats/hydrahon": "dev-master",
+        "icanboogie/inflector": "dev-master"
     },
     "autoload": {
         "psr-4": {
