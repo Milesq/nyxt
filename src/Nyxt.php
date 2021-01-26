@@ -23,7 +23,7 @@ final class Base {
             }
         });
 
-        $models = Model::scan_dir('model');
+        $models = Model::scan_dir('models');
         foreach ($models as [$className, $name, $path]) {
             include $path;
 
