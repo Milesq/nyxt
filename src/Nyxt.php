@@ -13,13 +13,11 @@ final class Base {
 
         $pdo = $get_pdo_fn();
         $orm = new Hydrahon('mysql', function($query, $queryString, $queryParameters) use($pdo) {
-            // $statement = $connection->prepare($queryString);
-            // $statement->execute($queryParameters);
-            echo $queryString;
+            $statement = $pdo->prepare($queryString);
+            $statement->execute($queryParameters);
 
             if ($query instanceof FetchableInterface) {
-                // return $statement->fetchAll(\PDO::FETCH_ASSOC);
-                return [];
+                return $statement->fetchAll(\PDO::FETCH_ASSOC);
             }
         });
 
