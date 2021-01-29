@@ -93,3 +93,31 @@ For the following file structure, the following paths will be available:
 ```
 
 Check `examples/routing` for more tips
+
+### Templates
+
+Inside `templates/`directory you can place
+twig templates, nextly you can render
+them inside controller by `$this->render($name, $parametersAsAssocTable)`
+
+**Important** Remember to set environment
+variable `NYXT_MODE` to production on deploy server.
+In development mode, cache is not used.
+
+You can set template params through for a few ways
+E.g.
+```php
+class Handler extends \Nyxt\Controller {
+    public function handle() {
+        // You can declare template arguments like:
+        $this->by_property = "hello";
+        $this->reset();
+        $this
+            ->setByMethod("hello")
+            ->setChainMethod("world")
+            ->unset('chainMethod');
+
+        $this->render('index', ['by_arg' => 1]);
+    }
+}
+```
