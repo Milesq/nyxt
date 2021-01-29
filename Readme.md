@@ -121,3 +121,8 @@ class Handler extends \Nyxt\Controller {
     }
 }
 ```
+
+### Error 404 - not found
+
+You can apply your own 404 site by add `[error].html`
+template or `404.html` in public directory
