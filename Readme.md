@@ -19,6 +19,8 @@ What is included in this package?
 
 ## Using
 
+Check our `examples/` directory
+
 ### Before start
 
 Nyxt have a small boilerplate. You must redirect all requests (except request which starts from `/public`) to index.php
@@ -121,6 +123,17 @@ class Handler extends \Nyxt\Controller {
     }
 }
 ```
+
+### Validation
+
+Every handler can declare `validate` method.
+The method will be invoked with `$v`
+parameter which is an instance of `\Rakit\Validation\Validator`.
+Check out [https://github.com/rakit/validation](https://github.com/rakit/validation)
+
+The `validate` method must tell Next if the validation passed
+via return boolean or string.
+
 
 ### Error 404 - not found
 
