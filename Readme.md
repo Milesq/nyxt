@@ -139,3 +139,54 @@ via return boolean or string.
 
 You can apply your own 404 site by add `[error].html`
 template or `404.html` in public directory
+
+
+### Using DB
+
+ORM is based on clancats/hydrahon,
+so check out [docs](https://clancats.io/hydrahon/master/)
+and `examples/orm`
+
+To create model, you need to create file
+named which is a singular form of the db table.
+
+Example model:
+```php
+<?php
+class Bike extends \Nyxt\Model {
+    var array $__columns = ['position', 'docked']; # these columns will be used in select and create methods
+
+    public function docked() {
+        return $this->findByDocked(true);
+    }
+}
+```
+
+How can we use this model?
+
+When `Handler` class is decorated with `#[nyxt('orm')]`
+every model will be injected to handler
+
+```php
+#[nyxt('orm')]
+class Handler extends \Nyxt\Controller {
+    function handle() {
+        $this->bikes->docked()->where('id', '>', 3)->get();
+    }
+}
+```
+
+To learn how exactly can u build queries take a look for hydrahon docs
+
+#### **Important**
+
+Now you may be asking "how does Nyxt connect to the database?"
+
+Answer: If your app is using db, you must change index.php a little bit and provide db connector as the first argument of constructor of \Nyxt\Base
+
+E.g.
+```php
+$framework = new \Nyxt\Base(function() {
+    return new PDO("mysql:host=localhost;dbname=test", "username", "pass");
+});
+```
