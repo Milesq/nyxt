@@ -19,7 +19,7 @@ abstract class Controller extends Internal\AssocArrayObjectSyntax {
         $msg = $this->validate(new Validator);
 
         $msg_is_string = gettype($msg) === 'string';
-        $default_message = 'Validation error has occured';
+        $default_message = 'Validation error has occurred';
 
         if (!$msg || $msg_is_string) {
             if ($msg_is_string) echo $msg;
