@@ -1,21 +1,19 @@
 # Nyxt - modern & simple PHP framework
 
-
-## Instalation
+## Installation
 
 You use this framework by [composer](https://getcomposer.org/)
 
 `composer require milesq/nyxt`
 
-
 ## Out of the box
 
 What is included in this package?
-- Routing based on file system (custom 404, public directory)
-- Twig template engine
-- Form validation based on rakit/validation
-- Simple a'la ORM to help you managing your database (based on clancats/hydrahon)
 
+-   Routing based on file system (custom 404, public directory)
+-   Twig template engine
+-   Form validation based on rakit/validation
+-   Simple a'la ORM to help you manage your database (based on clancats/hydrahon)
 
 ## Using
 
@@ -26,6 +24,7 @@ Check our `examples/` directory
 Nyxt have a small boilerplate. You must redirect all requests (except request which starts from `/public`) to index.php
 
 Example configuration for Apache
+
 ```apache
 RewriteEngine On
 
@@ -48,14 +47,15 @@ $framework = new \Nyxt\Base;
 $framework->run();
 ```
 
-Then create folder named `controllers`.
+Then create a folder named `controllers`.
 This directory is the place for your routes.
 Inside controller files you must declare class
 called `Handler` which extends from `\Nyxt\Controller`.
 This class should have public handle function which will
-be invoked when someone send request to your endpoint.
+be invoked when someone sends a request to your endpoint.
 
 Example of handler
+
 ```php
 <?php
 class Handler extends \Nyxt\Controller {
@@ -66,21 +66,22 @@ class Handler extends \Nyxt\Controller {
 }
 ```
 
-
 ### Routing
 
 Routing is based on file system and inspired by [Nuxt](https://nuxtjs.org/)
 
 There is a few rules you need to know to create routes
-- `index.php` will take controll over `/` path
-- `something.php` can be achieved by `/something`
-- `create.php` inside `user` can be achieved by `/user/create`
-- you can add path parameters (slug) by prepend name of slug with `_`.
+
+-   `index.php` will take control over `/` path
+-   `something.php` can be achieved by `/something`
+-   `create.php` inside `user` can be achieved by `/user/create`
+-   you can add path parameters (slug) by prepend name of slug with `_`.
 
     For example `controllers/user/_id.php` can be achieved by `/user/what-ever`
-    You have an access to slug parameters by handler object like that: `$this->id`
+    You have access to slug parameters by handler object like that: `$this->id`
 
 For the following file structure, the following paths will be available:
+
 ```
 |   .htaccess
 |   index.php
@@ -108,6 +109,7 @@ In development mode, cache is not used.
 
 You can set template params through for a few ways
 E.g.
+
 ```php
 class Handler extends \Nyxt\Controller {
     public function handle() {
@@ -134,12 +136,10 @@ Check out [https://github.com/rakit/validation](https://github.com/rakit/validat
 The `validate` method must tell Next if the validation passed
 via return boolean or string.
 
-
 ### Error 404 - not found
 
-You can apply your own 404 site by add `[error].html`
+You can apply your own 404 page by add `[error].html`
 template or `404.html` in public directory
-
 
 ### Using DB
 
@@ -147,10 +147,11 @@ ORM is based on clancats/hydrahon,
 so check out [docs](https://clancats.io/hydrahon/master/)
 and `examples/orm`
 
-To create model, you need to create file
+To create a model, you need to create a file
 named which is a singular form of the db table.
 
 Example model:
+
 ```php
 <?php
 class Bike extends \Nyxt\Model {
@@ -182,9 +183,10 @@ To learn how exactly can u build queries take a look for hydrahon docs
 
 Now you may be asking "how does Nyxt connect to the database?"
 
-Answer: If your app is using db, you must change index.php a little bit and provide db connector as the first argument of constructor of \Nyxt\Base
+Answer: If your app is using db, you must change index.php a little and provide db connector as the first argument of constructor of \Nyxt\Base
 
 E.g.
+
 ```php
 $framework = new \Nyxt\Base(function() {
     return new PDO("mysql:host=localhost;dbname=test", "username", "pass");
