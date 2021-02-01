@@ -2,7 +2,7 @@
 class Handler extends \Nyxt\Controller {
     public function handle() {
         echo "Welcome {$_GET['name']}!".PHP_EOL;
-        echo "We sent a meil to: {$_GET['email']}";
+        echo "We sent a mail to: {$_GET['email']}";
     }
 
     function validate($v): string|bool {

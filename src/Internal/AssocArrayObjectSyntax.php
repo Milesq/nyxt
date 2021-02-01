@@ -40,6 +40,6 @@ class AssocArrayObjectSyntax {
             return $this;
         }
 
-        throw new \Exception("Method $name, doesnt exists on Controller");
+        throw new \Exception("Method $name, doesn't exists on Controller");
     }
 }
